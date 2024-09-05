@@ -9,15 +9,15 @@ data class Payload(
     @SerialName("attachments")
     val attachments: List<Attachment?>?,
     @SerialName("bcc")
-    val bcc: List<Any?>?,
+    val bcc: List<RecipientInfo?>?,
     @SerialName("cc")
-    val cc: List<Cc?>?,
+    val cc: List<RecipientInfo?>?,
     @SerialName("date")
     val date: String?,
     @SerialName("from")
-    val from: From?,
+    val senderInfo: SenderInfo?,
     @SerialName("subject")
     val subject: String?,
     @SerialName("to")
-    val to: List<To?>?
+    val to: List<RecipientInfo?>?
 )

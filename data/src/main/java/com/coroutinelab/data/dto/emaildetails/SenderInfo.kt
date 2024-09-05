@@ -5,9 +5,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Cc(
+data class SenderInfo(
     @SerialName("email")
     val email: String?,
     @SerialName("name")
-    val name: String?
+    val name: String?,
+    @SerialName("profileImage")
+    val profileImage: String?
 )
