@@ -11,7 +11,7 @@ data class EmailDetailsDtoItem(
     @SerialName("hasAttachments")
     val hasAttachments: Boolean?,
     @SerialName("id")
-    val id: String?,
+    val id: String,
     @SerialName("isImportant")
     val isImportant: Boolean?,
     @SerialName("isPromotional")
@@ -19,7 +19,7 @@ data class EmailDetailsDtoItem(
     @SerialName("labels")
     val labels: List<String?>,
     @SerialName("payload")
-    val payload: Payload?,
+    val payload: Payload,
     @SerialName("snippet")
     val snippet: String?,
     @SerialName("threadId")

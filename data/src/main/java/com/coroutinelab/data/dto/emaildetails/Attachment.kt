@@ -13,5 +13,5 @@ data class Attachment(
     @SerialName("mimeType")
     val mimeType: String?,
     @SerialName("size")
-    val size: Int?
+    val size: Long?
 )

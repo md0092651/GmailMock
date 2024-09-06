@@ -9,7 +9,5 @@ data class RecipientInfo(
     @SerialName("email")
     val email: String?,
     @SerialName("name")
-    val name: String?,
-    @SerialName("profileImage")
-    val profileImage: String?
+    val name: String?
 )
