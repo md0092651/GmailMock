@@ -4,14 +4,13 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import dagger.Provides
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
 object NetworkModule {
 
-    val networkJson = Json { ignoreUnknownKeys = true }
+    private val networkJson = Json { ignoreUnknownKeys = true }
 
     @Provides
     fun provideBaseUrl() = "https://66d8348537b1cadd8053cedf.mockapi.io/"
@@ -22,9 +21,10 @@ object NetworkModule {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
+
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient, url: String): Retrofit = Retrofit.Builder()
+    fun provideRetrofit(url: String): Retrofit = Retrofit.Builder()
         .baseUrl(url)
         .addConverterFactory(networkJson.asConverterFactory("application/json".toMediaType()))
         .build()
