@@ -1,6 +1,7 @@
 [versions]
 agp = "8.6.0"
-glide = "4.16.0"
+constraintlayoutCompose = "1.0.1"
+glide = "1.0.0-beta01"
 hiltAndroidCompiler = "2.48"
 kotlin = "1.9.10"
 org-jetbrains-kotlin-android = "1.9.10"
@@ -22,6 +23,7 @@ coreSplashscreen = "1.1.0-alpha02"
 retrofit2KotlinxSerializationConverter = "1.0.0"
 
 [libraries]
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -56,7 +58,7 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 
 #Glide
-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide = { module = "com.github.bumptech.glide:compose", version.ref = "glide" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
