@@ -6,7 +6,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface ApiServices {
-
     @GET("api/v1/email")
     suspend fun getEmailList(): Response<EmailListDto>
 

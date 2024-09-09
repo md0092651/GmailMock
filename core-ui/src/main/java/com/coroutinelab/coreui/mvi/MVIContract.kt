@@ -1,4 +1,4 @@
-package com.coroutinelab.core_ui.mvi
+package com.coroutinelab.coreui.mvi
 
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,4 +1,4 @@
-package com.coroutinelab.core_ui.component
+package com.coroutinelab.coreui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -18,29 +18,27 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SearchBar(
-    modifier: Modifier,
-    profileImageSource: String,
-    onSearch: (String) -> Unit,
-    onMenuClick: () -> Unit,
-) {
+fun SearchBar(modifier: Modifier, profileImageSource: String, onSearch: (String) -> Unit, onMenuClick: () -> Unit) {
     Row(
         modifier = modifier.background(color = Color(0xFFF7F8FC), shape = RoundedCornerShape(100)),
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
-            modifier = Modifier.padding(
+            modifier =
+            Modifier.padding(
                 start = 12.dp
             ),
-            onClick = onMenuClick) {
+            onClick = onMenuClick
+        ) {
             Icon(Icons.Default.Menu, contentDescription = "Menu")
         }
         Text(
             modifier = Modifier.weight(1f),
-            text = "Search in mail",
+            text = "Search in mail"
         )
         CircularProfileImage(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .padding(
                     end = 12.dp,
                     top = 8.dp,
@@ -62,4 +60,3 @@ fun SearchBarPreview() {
         onMenuClick = {}
     )
 }
-

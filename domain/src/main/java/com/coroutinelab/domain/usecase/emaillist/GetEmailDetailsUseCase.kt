@@ -12,5 +12,4 @@ class GetEmailDetailsUseCase @Inject constructor(
     suspend operator fun invoke(): Either<Failure, EmailDetailsModel> {
         return emailRepository.getEmailDetails()
     }
-
 }

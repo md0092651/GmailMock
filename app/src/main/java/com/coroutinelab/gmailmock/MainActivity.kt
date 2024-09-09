@@ -16,7 +16,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             GmailMockTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
                 }
             }
         }

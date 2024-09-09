@@ -11,7 +11,6 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.spotless) apply false
 }
-val ktLintVersion = libs.versions.ktlint.get()
 
 subprojects {
     apply<SpotlessPlugin>()
@@ -20,6 +19,16 @@ subprojects {
             target("src/**/*.kt")
             targetExclude("build/**/*.kt")
             ktlint()
+                .editorConfigOverride(
+                    mapOf(
+                        "max_line_length" to "120",
+                        "ij_kotlin_allow_trailing_comma" to "false",
+                        "ktlint_standard_filename" to "disabled",
+                        "ij_kotlin_allow_trailing_comma_on_call_site" to "false",
+                        "ktlint_function_naming_ignore_when_annotated_with" to "Composable, Test"
+                    )
+                )
+
         }
 
         kotlinGradle {

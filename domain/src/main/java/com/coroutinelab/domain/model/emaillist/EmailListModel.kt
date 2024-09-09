@@ -14,4 +14,3 @@ data class EmailListItemModel(
     val isPromotional: Boolean,
     val fileInfo: List<FileInfo>
 )
-

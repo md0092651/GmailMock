@@ -11,11 +11,13 @@ import com.coroutinelab.domain.model.emaillist.EmailListItemModel
 import com.coroutinelab.domain.repository.EmailRepository
 import javax.inject.Inject
 
-class EmailRepositoryImpl @Inject constructor(
+class EmailRepositoryImpl
+@Inject
+constructor(
     private val apiService: ApiServices,
     private val emailListMapper: EmailListMapper,
     private val emailDetailsMapper: EmailDetailsMapper
-): EmailRepository {
+) : EmailRepository {
     override suspend fun getEmailList(): Either<Failure, List<EmailListItemModel>> = safeApiCall(
         apiCall = { apiService.getEmailList() },
         mapper = { emailListMapper.map(it) }

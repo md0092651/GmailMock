@@ -30,6 +30,6 @@ suspend fun <T, R> safeApiCall(
             }
         }
     }.getOrElse {
-       it.toEither()
+        it.toEither()
     }
 }

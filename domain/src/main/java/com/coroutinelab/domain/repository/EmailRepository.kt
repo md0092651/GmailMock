@@ -7,5 +7,5 @@ import com.coroutinelab.domain.model.emaillist.EmailListItemModel
 
 interface EmailRepository {
     suspend fun getEmailList(): Either<Failure, List<EmailListItemModel>>
-    suspend fun getEmailDetails() : Either<Failure, EmailDetailsModel>
+    suspend fun getEmailDetails(): Either<Failure, EmailDetailsModel>
 }

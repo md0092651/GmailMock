@@ -1,14 +1,13 @@
 package com.coroutinelab.presentation.emaillist.mvi
 
 import com.coroutinelab.core.error.Failure
-import com.coroutinelab.core_ui.mvi.MVIContract
+import com.coroutinelab.coreui.mvi.MVIContract
 import com.coroutinelab.domain.model.emaillist.EmailListItemModel
 
 interface EmailListContract :
     MVIContract<EmailListContract.EmailListEvent, EmailListContract.EmailListState, EmailListContract.EmailListEffect> {
     sealed class EmailListEvent {
-        data object
-        LoadEmailList : EmailListEvent()
+        data object LoadEmailList : EmailListEvent()
 
         data object EmailClicked : EmailListEvent()
     }

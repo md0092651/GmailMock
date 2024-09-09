@@ -1,4 +1,4 @@
-package com.coroutinelab.core_ui.component
+package com.coroutinelab.coreui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.size
@@ -16,18 +16,15 @@ import com.bumptech.glide.integration.compose.GlideImage
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun CircularProfileImage(
-    modifier: Modifier,
-    imageSource:String,
-    size: Dp = 32.dp
-) {
+fun CircularProfileImage(modifier: Modifier, imageSource: String, size: Dp = 32.dp) {
     GlideImage(
         model = imageSource,
         contentDescription = null,
-        modifier = modifier.size(size)
+        modifier =
+        modifier.size(size)
             .background(color = Color.Gray, shape = CircleShape)
             .clip(CircleShape),
-        contentScale = ContentScale.Crop,
+        contentScale = ContentScale.Crop
     )
 }
 

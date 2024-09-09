@@ -1,4 +1,4 @@
-package com.coroutinelab.core_ui.component
+package com.coroutinelab.coreui.component
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
@@ -19,17 +19,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun OutLinedButton(
-    modifier: Modifier,
-    buttonText: String,
-    @DrawableRes buttonIcon: Int,
-    onclick: () -> Unit
-) {
+fun OutLinedButton(modifier: Modifier, buttonText: String, @DrawableRes buttonIcon: Int, onclick: () -> Unit) {
     OutlinedButton(
         modifier = modifier,
         onClick = onclick,
         shape = RoundedCornerShape(30),
-        border = BorderStroke(1.dp, Color.DarkGray),
+        border = BorderStroke(1.dp, Color.DarkGray)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -53,5 +48,5 @@ fun OutLinedButtonPreview() {
         modifier = Modifier,
         buttonText = "Button",
         buttonIcon = android.R.drawable.ic_menu_add
-    ){}
+    ) {}
 }

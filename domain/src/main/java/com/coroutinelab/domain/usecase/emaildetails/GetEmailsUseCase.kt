@@ -7,9 +7,9 @@ import com.coroutinelab.domain.repository.EmailRepository
 import javax.inject.Inject
 
 class GetEmailsUseCase
-    @Inject
-    constructor(
-        private val emailRepository: EmailRepository
-    ) {
-        suspend operator fun invoke(): Either<Failure, List<EmailListItemModel>> = emailRepository.getEmailList()
-    }
+@Inject
+constructor(
+    private val emailRepository: EmailRepository
+) {
+    suspend operator fun invoke(): Either<Failure, List<EmailListItemModel>> = emailRepository.getEmailList()
+}

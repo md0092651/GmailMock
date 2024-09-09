@@ -9,7 +9,6 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 object NetworkModule {
-
     private val networkJson = Json { ignoreUnknownKeys = true }
 
     @Provides
@@ -21,12 +20,10 @@ object NetworkModule {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
-
     @Singleton
     @Provides
     fun provideRetrofit(url: String): Retrofit = Retrofit.Builder()
         .baseUrl(url)
         .addConverterFactory(networkJson.asConverterFactory("application/json".toMediaType()))
         .build()
-
 }

@@ -13,8 +13,9 @@ import com.coroutinelab.domain.model.emaildetails.RecipientModel
 import com.coroutinelab.domain.model.emaildetails.SenderInfoModel
 import javax.inject.Inject
 
-class EmailDetailsMapper @Inject constructor(): ResultMapper<EmailDetailsDto,EmailDetailsModel> {
-
+class EmailDetailsMapper
+@Inject
+constructor() : ResultMapper<EmailDetailsDto, EmailDetailsModel> {
     override fun map(input: EmailDetailsDto): EmailDetailsModel = input.first().toEmailDetailsModel()
 
     private fun EmailDetailsDtoItem.toEmailDetailsModel(): EmailDetailsModel {
@@ -28,10 +29,11 @@ class EmailDetailsMapper @Inject constructor(): ResultMapper<EmailDetailsDto,Ema
             htmlBody = body?.html,
             plainBody = body?.text.orEmpty(),
             date = payload.date.orEmpty(),
-            isImportant = isImportant .orDefault(),
+            isImportant = isImportant.orDefault(),
             isStarred = labels.contains("Starred"),
             isPromotional = isPromotional.orDefault(),
-            fileInfo = payload.attachments.mapOrDefault(emptyList()){
+            fileInfo =
+            payload.attachments.mapOrDefault(emptyList()) {
                 FileInfo(
                     filename = it?.filename.orEmpty(),
                     mimeType = it?.mimeType.orEmpty(),
@@ -39,11 +41,13 @@ class EmailDetailsMapper @Inject constructor(): ResultMapper<EmailDetailsDto,Ema
                     downLoadUrl = it?.downloadUrl
                 )
             },
-            labels = labels.mapOrDefault(emptyList()){
+            labels =
+            labels.mapOrDefault(emptyList()) {
                 it.orEmpty()
             }
         )
     }
+
     private fun SenderInfo.toSenderInfoModel(): SenderInfoModel {
         return SenderInfoModel(
             email = email,
@@ -53,16 +57,11 @@ class EmailDetailsMapper @Inject constructor(): ResultMapper<EmailDetailsDto,Ema
     }
 
     private fun List<RecipientInfo>?.toRecipientModel(): List<RecipientModel> {
-        return this.mapOrDefault(emptyList()){
+        return this.mapOrDefault(emptyList()) {
             RecipientModel(
                 email = it.email,
                 name = it.name
             )
         }
     }
-
 }
-
-
-
-
