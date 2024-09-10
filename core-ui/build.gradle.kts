@@ -42,12 +42,12 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.ui.tooling.preview)
+    api(libs.androidx.activity.compose)
+    api(platform(libs.androidx.compose.bom))
+    api(libs.androidx.material3)
+    api(libs.androidx.ui.tooling.preview)
     androidTestImplementation(libs.androidx.espresso.core)
-    debugImplementation(libs.androidx.ui.tooling)
-    implementation(libs.glide)
+    debugApi(libs.androidx.ui.tooling)
+    api(libs.glide)
     implementation(libs.androidx.constraintlayout.compose)
 }

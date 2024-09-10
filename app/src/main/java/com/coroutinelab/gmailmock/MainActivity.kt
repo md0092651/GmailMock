@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.coroutinelab.gmailmock.ui.theme.GmailMockTheme
+import com.coroutinelab.presentation.emaillist.EmailListScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             GmailMockTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    EmailListScreen()
                 }
             }
         }

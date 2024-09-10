@@ -6,11 +6,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Attachment(
     @SerialName("downloadUrl")
-    val downloadUrl: String?,
+    val downloadUrl: String? = null,
     @SerialName("filename")
-    val filename: String?,
+    val filename: String? = null,
     @SerialName("mimeType")
-    val mimeType: String?,
+    val mimeType: String? = null,
     @SerialName("size")
-    val size: Long?
+    val size: Long? = null
 )

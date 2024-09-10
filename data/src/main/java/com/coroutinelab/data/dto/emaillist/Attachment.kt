@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Attachment(
     @SerialName("filename")
-    val filename: String?,
+    val filename: String? = null,
     @SerialName("mimeType")
-    val mimeType: String?,
+    val mimeType: String? = null,
     @SerialName("size")
-    val size: Int?
+    val size: Int? = null
 )
