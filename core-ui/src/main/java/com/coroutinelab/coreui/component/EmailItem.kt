@@ -55,7 +55,7 @@ fun EmailItem(modifier: Modifier, onEmailClick: () -> Unit) {
             text = "Random Bank Account Balance Update",
             modifier =
             Modifier.constrainAs(subject) {
-                top.linkTo(from.bottom, margin = 4.dp)
+                top.linkTo(from.bottom)
                 start.linkTo(from.start)
                 end.linkTo(star.start, margin = 8.dp)
                 width = Dimension.fillToConstraints

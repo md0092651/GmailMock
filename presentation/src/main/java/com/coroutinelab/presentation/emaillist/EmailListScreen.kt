@@ -1,5 +1,6 @@
 package com.coroutinelab.presentation.emaillist
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
@@ -14,23 +15,28 @@ import com.coroutinelab.presentation.emaillist.mvi.EmailListViewModel
 
 @Composable
 fun EmailListScreen(viewModel: EmailListViewModel = hiltViewModel(), onItemClick: () -> Unit) {
-    LaunchedEffect(Unit) {
-        viewModel.event(EmailListContract.EmailListEvent.LoadEmailList)
+    val states = viewModel.state.collectAsState().value
+    LaunchedEffect(states) {
+        if (states !is EmailListContract.EmailListState.Success) {
+            viewModel.event(EmailListContract.EmailListEvent.LoadEmailList)
+        }
     }
 
-    when (val states = viewModel.state.collectAsState().value) {
+    when (states) {
         is EmailListContract.EmailListState.Error -> Text(states.error.toString())
         EmailListContract.EmailListState.Loading -> Text("Loading")
-        is EmailListContract.EmailListState.Success -> EmailListUi(states)
+        is EmailListContract.EmailListState.Success -> EmailListUi(states, onItemClick)
     }
 }
 
 @Composable
-fun EmailListUi(states: EmailListContract.EmailListState.Success) {
+fun EmailListUi(states: EmailListContract.EmailListState.Success, onItemClick: () -> Unit) {
     LazyColumn {
         items(states.emailList) {
             EmailItem(
-                modifier = Modifier
+                modifier = Modifier.clickable {
+                    onItemClick()
+                }
             ) {
             }
         }
