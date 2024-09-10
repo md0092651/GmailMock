@@ -1,24 +1,35 @@
 package com.coroutinelab.coreui.component
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 
 @Composable
-fun EmailItem(modifier: Modifier, onEmailClick: () -> Unit) {
+fun EmailItem(
+    modifier: Modifier,
+    profileImageUrl: String?,
+    senderName: String,
+    emailSubject: String,
+    emailSnippet: String,
+    isStarred: Boolean
+) {
     ConstraintLayout(
         modifier =
         modifier
@@ -27,18 +38,28 @@ fun EmailItem(modifier: Modifier, onEmailClick: () -> Unit) {
     ) {
         val (avatar, from, subject, snippet, time, star, buttons) = createRefs()
 
-        CircularProfileImage(
-            modifier =
-            Modifier.constrainAs(avatar) {
-                top.linkTo(parent.top)
-                start.linkTo(parent.start)
-            },
-            imageSource = "https://i.pravatar.cc/250?img=5",
-            size = 32.dp
-        )
+        profileImageUrl?.let {
+            CircularProfileImage(
+                modifier =
+                Modifier.constrainAs(avatar) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                },
+                imageSource = profileImageUrl,
+                size = 32.dp
+            )
+        } ?: Box(
+            modifier = Modifier
+                .size(32.dp)
+                .clip(CircleShape)
+                .background(color = Color.Green),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "HV")
+        }
 
         Text(
-            text = "John Doe",
+            text = senderName,
             modifier =
             Modifier.constrainAs(from) {
                 top.linkTo(avatar.top)
@@ -52,7 +73,7 @@ fun EmailItem(modifier: Modifier, onEmailClick: () -> Unit) {
         )
 
         Text(
-            text = "Random Bank Account Balance Update",
+            text = emailSubject,
             modifier =
             Modifier.constrainAs(subject) {
                 top.linkTo(from.bottom)
@@ -66,7 +87,7 @@ fun EmailItem(modifier: Modifier, onEmailClick: () -> Unit) {
         )
 
         Text(
-            text = "Random Bank Account Balance Update",
+            text = emailSnippet,
             modifier =
             Modifier.constrainAs(snippet) {
                 top.linkTo(subject.bottom, margin = 4.dp)
@@ -88,9 +109,10 @@ fun EmailItem(modifier: Modifier, onEmailClick: () -> Unit) {
         )
 
         Icon(
+
             Icons.Default.Star,
             contentDescription = null,
-            tint = Color(0xFFFFD700),
+            tint = if (isStarred) Color(0xFFFFD700) else Color(0x706B6B6E),
             modifier =
             Modifier
                 .size(24.dp)
@@ -101,12 +123,13 @@ fun EmailItem(modifier: Modifier, onEmailClick: () -> Unit) {
         )
     }
 }
-
+/*
 @Preview
 @Composable
 fun EmailItemPreview() {
     EmailItem(
         modifier = Modifier,
-        onEmailClick = {}
+        onEmailClick = {},
+        data = it
     )
-}
+}*/

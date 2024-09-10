@@ -36,9 +36,13 @@ fun EmailListUi(states: EmailListContract.EmailListState.Success, onItemClick: (
             EmailItem(
                 modifier = Modifier.clickable {
                     onItemClick()
-                }
-            ) {
-            }
+                },
+                profileImageUrl = it.profileImage,
+                senderName = it.from,
+                emailSubject = it.subject,
+                emailSnippet = it.snippet,
+                isStarred = it.isStarred
+            )
         }
     }
 }
