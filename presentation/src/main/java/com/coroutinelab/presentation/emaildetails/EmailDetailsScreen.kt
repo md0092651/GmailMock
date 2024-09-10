@@ -14,19 +14,32 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.coroutinelab.coreui.component.EmailDetailsBottomSection
 import com.coroutinelab.coreui.component.EmailDetailsSenderInfo
 import com.coroutinelab.coreui.component.EmailDetailsSubject
+import com.coroutinelab.presentation.emaildetails.mvi.EmailDetailsContract
+import com.coroutinelab.presentation.emaildetails.mvi.EmailDetailsViewModel
 import com.mohamedrejeb.richeditor.model.rememberRichTextState
 import com.mohamedrejeb.richeditor.ui.material3.RichTextEditor
 
 @Composable
-fun EmailDetailsScreen() {
-    EmailDetailsUi()
+fun EmailDetailsScreen(viewModel: EmailDetailsViewModel = hiltViewModel()) {
+    val states = viewModel.state.collectAsState().value
+    LaunchedEffect(states) {
+        if (states.isLoading) {
+            viewModel.event(EmailDetailsContract.EmailDetailsEvent.LoadEmailDetails)
+        }
+    }
+    states.details?.let {
+        EmailDetailsUi()
+    }
 }
 
 @Composable

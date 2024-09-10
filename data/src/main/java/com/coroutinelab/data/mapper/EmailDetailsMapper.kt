@@ -4,7 +4,6 @@ import com.coroutinelab.core.functional.mapOrDefault
 import com.coroutinelab.core.functional.orDefault
 import com.coroutinelab.core.mapper.ResultMapper
 import com.coroutinelab.data.dto.emaildetails.EmailDetailsDto
-import com.coroutinelab.data.dto.emaildetails.EmailDetailsDtoItem
 import com.coroutinelab.data.dto.emaildetails.RecipientInfo
 import com.coroutinelab.data.dto.emaildetails.SenderInfo
 import com.coroutinelab.domain.model.common.FileInfo
@@ -15,10 +14,10 @@ import javax.inject.Inject
 
 class EmailDetailsMapper
 @Inject
-constructor() : ResultMapper<EmailDetailsDto, EmailDetailsModel> {
-    override fun map(input: EmailDetailsDto): EmailDetailsModel = input.first().toEmailDetailsModel()
+constructor() : ResultMapper<ArrayList<EmailDetailsDto>, EmailDetailsModel> {
+    override fun map(input: ArrayList<EmailDetailsDto>): EmailDetailsModel = input.first().toEmailDetailsModel()
 
-    private fun EmailDetailsDtoItem.toEmailDetailsModel(): EmailDetailsModel {
+    private fun EmailDetailsDto.toEmailDetailsModel(): EmailDetailsModel {
         return EmailDetailsModel(
             id = id,
             from = payload.senderInfo.toSenderInfoModel(),

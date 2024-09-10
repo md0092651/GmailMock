@@ -3,21 +3,21 @@ package com.coroutinelab.data.mapper
 import com.coroutinelab.core.functional.mapOrDefault
 import com.coroutinelab.core.functional.orDefault
 import com.coroutinelab.core.mapper.ResultMapper
-import com.coroutinelab.data.dto.emaillist.EmailListItem
+import com.coroutinelab.data.dto.emaillist.EmailListItemDto
 import com.coroutinelab.domain.model.common.FileInfo
 import com.coroutinelab.domain.model.emaillist.EmailListItemModel
 import javax.inject.Inject
 
 class EmailListMapper
 @Inject
-constructor() : ResultMapper<List<EmailListItem>, List<EmailListItemModel>> {
-    override fun map(input: List<EmailListItem>): List<EmailListItemModel> = input.filter {
+constructor() : ResultMapper<List<EmailListItemDto>, List<EmailListItemModel>> {
+    override fun map(input: List<EmailListItemDto>): List<EmailListItemModel> = input.filter {
         it.id != null && it.payload.from != null
     }.map {
         it.model()
     }
 
-    private fun EmailListItem.model() = EmailListItemModel(
+    private fun EmailListItemDto.model() = EmailListItemModel(
         id = id!!,
         from = payload.from!!,
         profileImage = payload.profileImage,

@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class EmailListItem(
+data class EmailListItemDto(
     @SerialName("hasAttachments")
     val hasAttachments: Boolean?,
     @SerialName("id")
