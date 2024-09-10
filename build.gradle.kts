@@ -1,5 +1,6 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
@@ -34,6 +35,12 @@ subprojects {
         kotlinGradle {
             target("*.kts")
             ktlint()
+        }
+    }
+
+    afterEvaluate {
+        tasks.withType<KotlinCompile>(){
+            finalizedBy("spotlessApply")
         }
     }
 }

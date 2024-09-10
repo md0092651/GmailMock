@@ -13,9 +13,7 @@ import com.coroutinelab.presentation.emaillist.mvi.EmailListContract
 import com.coroutinelab.presentation.emaillist.mvi.EmailListViewModel
 
 @Composable
-fun EmailListScreen(
-    viewModel: EmailListViewModel = hiltViewModel()
-) {
+fun EmailListScreen(viewModel: EmailListViewModel = hiltViewModel(), onItemClick: () -> Unit) {
     LaunchedEffect(Unit) {
         viewModel.event(EmailListContract.EmailListEvent.LoadEmailList)
     }
@@ -29,15 +27,12 @@ fun EmailListScreen(
 
 @Composable
 fun EmailListUi(states: EmailListContract.EmailListState.Success) {
-
     LazyColumn {
         items(states.emailList) {
             EmailItem(
                 modifier = Modifier
-            ){
-
+            ) {
             }
         }
     }
-
 }

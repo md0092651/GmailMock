@@ -4,12 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.coroutinelab.gmailmock.ui.theme.GmailMockTheme
 import com.coroutinelab.presentation.emaillist.EmailListScreen
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.serialization.Serializable
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -18,10 +19,24 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GmailMockTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    EmailListScreen()
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = EmailList
+                ) {
+                    composable<EmailList> {
+                        EmailListScreen {
+                            navController.navigate(EmailDetails)
+                        }
+                    }
                 }
             }
         }
     }
 }
+
+@Serializable
+object EmailList
+
+@Serializable
+object EmailDetails

@@ -50,4 +50,7 @@ dependencies {
     debugApi(libs.androidx.ui.tooling)
     api(libs.glide)
     implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.extendedspans)
+    implementation(libs.androidx.material.icons.extended)
+    api(libs.richeditor.compose)
 }

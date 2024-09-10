@@ -1,6 +1,5 @@
 package com.coroutinelab.presentation.emaillist.mvi
 
-
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -39,7 +38,6 @@ class EmailListViewModel @Inject constructor(
         }
 
         is EmailListContract.EmailListEvent.EmailClicked -> {
-
         }
     }
 
@@ -48,20 +46,20 @@ class EmailListViewModel @Inject constructor(
             getEmailsUseCase().fold(
                 {
                     mutableUIState.update { state ->
-                        Log.e("Mithilesh", "loadEmail: $it", )
+                        Log.e("Mithilesh", "loadEmail: $it")
                         EmailListContract.EmailListState.Error(
                             it
                         )
                     }
-            }, {
+                },
+                {
                     mutableUIState.update { state ->
                         EmailListContract.EmailListState.Success(
                             emailList = it
                         )
                     }
-            })
+                }
+            )
         }
     }
-
-
 }
