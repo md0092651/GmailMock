@@ -27,6 +27,7 @@ coreSplashscreen = "1.1.0-rc01"
 retrofit2KotlinxSerializationConverter = "1.0.0"
 composeNavigation = "2.8.0"
 richeditorCompose = "1.0.0-rc06"
+navigationRuntimeKtx = "2.8.0"
 
 [libraries]
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
@@ -72,6 +73,7 @@ androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", versi
 #Glide
 glide = { module = "com.github.bumptech.glide:compose", version.ref = "glide" }
 richeditor-compose = { module = "com.mohamedrejeb.richeditor:richeditor-compose", version.ref = "richeditorCompose" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

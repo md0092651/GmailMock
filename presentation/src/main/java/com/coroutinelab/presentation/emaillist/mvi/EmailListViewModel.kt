@@ -31,15 +31,16 @@ class EmailListViewModel @Inject constructor(
     override val effect: SharedFlow<EmailListContract.EmailListEffect>
         get() = mutableSharedFlow.asSharedFlow()
 
-    override fun event(event: EmailListContract.EmailListEvent) = when (event) {
-        is EmailListContract.EmailListEvent.LoadEmailList -> {
-            mutableUIState.value = EmailListContract.EmailListState.Loading
-            loadEmail()
-        }
+    override fun event(event: EmailListContract.EmailListEvent) =
+        when (event) {
+            is EmailListContract.EmailListEvent.LoadEmailList -> {
+                mutableUIState.value = EmailListContract.EmailListState.Loading
+                loadEmail()
+            }
 
-        is EmailListContract.EmailListEvent.EmailClicked -> {
+            is EmailListContract.EmailListEvent.EmailClicked -> {
+            }
         }
-    }
 
     private fun loadEmail() {
         viewModelScope.launch {

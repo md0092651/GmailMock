@@ -6,7 +6,8 @@ sealed class Either<out L, out R> {
     data class Right<out T>(val value: T) : Either<Nothing, T>()
 }
 
-inline fun <L, R, T> Either<L, R>.fold(left: (L) -> T, right: (R) -> T): T = when (this) {
-    is Either.Left -> left(value)
-    is Either.Right -> right(value)
-}
+inline fun <L, R, T> Either<L, R>.fold(left: (L) -> T, right: (R) -> T): T =
+    when (this) {
+        is Either.Left -> left(value)
+        is Either.Right -> right(value)
+    }

@@ -9,23 +9,25 @@ import javax.inject.Inject
 class EmailListMapper
 @Inject
 constructor() : ResultMapper<List<EmailListItemDto>, List<EmailListItemModel>> {
-    override fun map(input: List<EmailListItemDto>): List<EmailListItemModel> = input.filter {
-        it.id != null && it.payload.from != null
-    }.map {
-        it.model()
-    }.sortedBy {
-        it.date
-    }.reversed()
+    override fun map(input: List<EmailListItemDto>): List<EmailListItemModel> =
+        input.filter {
+            it.id != null && it.payload.from != null
+        }.map {
+            it.model()
+        }.sortedBy {
+            it.date
+        }.reversed()
 
-    private fun EmailListItemDto.model() = EmailListItemModel(
-        id = id!!,
-        from = payload.from!!,
-        profileImage = payload.profileImage,
-        subject = payload.subject.orEmpty(),
-        snippet = snippet.orEmpty(),
-        date = payload.date.orEmpty(),
-        isImportant = isImportant.orDefault(),
-        isStarred = isImportant.orDefault(),
-        isPromotional = isPromotional.orDefault()
-    )
+    private fun EmailListItemDto.model() =
+        EmailListItemModel(
+            id = id!!,
+            from = payload.from!!,
+            profileImage = payload.profileImage,
+            subject = payload.subject.orEmpty(),
+            snippet = snippet.orEmpty(),
+            date = payload.date.orEmpty(),
+            isImportant = isImportant.orDefault(),
+            isStarred = isImportant.orDefault(),
+            isPromotional = isPromotional.orDefault()
+        )
 }

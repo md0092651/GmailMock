@@ -14,16 +14,16 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 
 @Composable
-fun DetailsAppBar(modifier: Modifier = Modifier) {
+fun DetailsAppBar(modifier: Modifier = Modifier, navController: NavHostController) {
     Row(
         modifier = Modifier
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = { }) {
+        IconButton(onClick = { navController.popBackStack() }) {
             Icon(Icons.Default.ArrowBackIosNew, contentDescription = "Back")
         }
         Spacer(Modifier.weight(1f))
@@ -40,10 +40,4 @@ fun DetailsAppBar(modifier: Modifier = Modifier) {
             Icon(Icons.Default.MoreVert, contentDescription = "Back")
         }
     }
-}
-
-@Preview
-@Composable
-fun DetailsAppBarPreview() {
-    DetailsAppBar()
 }

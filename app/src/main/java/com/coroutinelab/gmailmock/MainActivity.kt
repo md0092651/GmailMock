@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                         topBar = {
                             when (topAppBarState) {
                                 TopAppBarState.HOME -> HomeAppBar()
-                                TopAppBarState.DETAILS -> DetailsAppBar()
+                                TopAppBarState.DETAILS -> DetailsAppBar(navController = navController)
                             }
                         }
                     ) { innerPadding ->

@@ -23,21 +23,24 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesHttpLoggingInterceptor() = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
-    }
+    fun providesHttpLoggingInterceptor() =
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
 
     @Singleton
     @Provides
-    fun provideRetrofit(url: String, loggingInterceptor: HttpLoggingInterceptor): Retrofit = Retrofit.Builder()
-        .baseUrl(url)
-        .addConverterFactory(networkJson.asConverterFactory("application/json".toMediaType()))
-        .client(OkHttpClient.Builder().addInterceptor(loggingInterceptor).build())
-        .build()
+    fun provideRetrofit(url: String, loggingInterceptor: HttpLoggingInterceptor): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(url)
+            .addConverterFactory(networkJson.asConverterFactory("application/json".toMediaType()))
+            .client(OkHttpClient.Builder().addInterceptor(loggingInterceptor).build())
+            .build()
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): ApiServices = retrofit.create(
-        ApiServices::class.java
-    )
+    fun provideApiService(retrofit: Retrofit): ApiServices =
+        retrofit.create(
+            ApiServices::class.java
+        )
 }

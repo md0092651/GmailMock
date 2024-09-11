@@ -18,13 +18,15 @@ constructor(
     private val emailListMapper: EmailListMapper,
     private val emailDetailsMapper: EmailDetailsMapper
 ) : EmailRepository {
-    override suspend fun getEmailList(): Either<Failure, List<EmailListItemModel>> = safeApiCall(
-        apiCall = { apiService.getEmailList() },
-        mapper = { emailListMapper.map(it) }
-    )
+    override suspend fun getEmailList(): Either<Failure, List<EmailListItemModel>> =
+        safeApiCall(
+            apiCall = { apiService.getEmailList() },
+            mapper = { emailListMapper.map(it) }
+        )
 
-    override suspend fun getEmailDetails(): Either<Failure, EmailDetailsModel> = safeApiCall(
-        apiCall = { apiService.getEmailDetail() },
-        mapper = { emailDetailsMapper.map(it) }
-    )
+    override suspend fun getEmailDetails(): Either<Failure, EmailDetailsModel> =
+        safeApiCall(
+            apiCall = { apiService.getEmailDetail() },
+            mapper = { emailDetailsMapper.map(it) }
+        )
 }

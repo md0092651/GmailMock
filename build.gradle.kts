@@ -26,6 +26,9 @@ subprojects {
                         "ij_kotlin_allow_trailing_comma" to "false",
                         "ktlint_standard_filename" to "disabled",
                         "ij_kotlin_allow_trailing_comma_on_call_site" to "false",
+                        "ij_kotlin_line_break_after_multiline_when_entry" to "false",
+                        "tlint_standard_no-empty-first-line-in-method-block" to "enabled",
+                        "ktlint_function_signature_body_expression_wrapping" to "multiline",
                         "ktlint_function_naming_ignore_when_annotated_with" to "Composable, Test"
                     )
                 )
@@ -39,7 +42,7 @@ subprojects {
     }
 
     afterEvaluate {
-        tasks.withType<KotlinCompile>(){
+        tasks.withType<KotlinCompile> {
             finalizedBy("spotlessApply")
         }
     }
