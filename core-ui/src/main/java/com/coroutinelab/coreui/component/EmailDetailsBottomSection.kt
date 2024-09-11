@@ -18,6 +18,7 @@ import androidx.compose.material.icons.outlined.AttachFile
 import androidx.compose.material.icons.outlined.Mood
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -49,7 +50,7 @@ fun EmailDetailsBottomSection(modifier: Modifier = Modifier, isReplyMode: Boolea
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .background(Color.DarkGray, shape = RoundedCornerShape(24.dp))
+                .background(MaterialTheme.colorScheme.surfaceContainerHighest, shape = RoundedCornerShape(24.dp))
                 .padding(horizontal = 16.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -167,10 +168,10 @@ private fun ReplyBar() {
         Icon(
             Icons.Default.ArrowDropDown,
             contentDescription = "Dropdown",
-            tint = Color.LightGray
+            tint = MaterialTheme.colorScheme.onSurface
         )
         Spacer(modifier = Modifier.width(8.dp))
-        Text("Reply", color = Color.LightGray)
+        Text("Reply", color = MaterialTheme.colorScheme.onSurface)
         Spacer(modifier = Modifier.weight(1f))
         IconButton(
             onClick = {},

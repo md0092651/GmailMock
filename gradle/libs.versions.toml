@@ -23,9 +23,9 @@ loggingInterceptor = "5.0.0-alpha.5"
 kotlinxSerializationJson = "1.6.1"
 hiltAndroid = "2.48"
 hiltCompiler = "2.48"
-coreSplashscreen = "1.1.0-alpha02"
+coreSplashscreen = "1.1.0-rc01"
 retrofit2KotlinxSerializationConverter = "1.0.0"
-composeNavigation = "2.8.0-alpha08"
+composeNavigation = "2.8.0"
 richeditorCompose = "1.0.0-rc06"
 
 [libraries]

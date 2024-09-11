@@ -1,5 +1,7 @@
 package com.coroutinelab.presentation.emaildetails
 
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +21,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.coroutinelab.coreui.component.EmailDetailsBottomSection
 import com.coroutinelab.coreui.component.EmailDetailsSenderInfo
@@ -27,8 +30,7 @@ import com.coroutinelab.coreui.component.LinearFullScreenProgress
 import com.coroutinelab.domain.model.emaildetails.EmailDetailsModel
 import com.coroutinelab.presentation.emaildetails.mvi.EmailDetailsContract
 import com.coroutinelab.presentation.emaildetails.mvi.EmailDetailsViewModel
-import com.mohamedrejeb.richeditor.model.rememberRichTextState
-import com.mohamedrejeb.richeditor.ui.material3.RichTextEditor
+import com.mohamedrejeb.richeditor.annotation.ExperimentalRichTextApi
 
 @Composable
 fun EmailDetailsScreen(
@@ -52,6 +54,7 @@ fun EmailDetailsScreen(
     }
 }
 
+@OptIn(ExperimentalRichTextApi::class)
 @Composable
 fun EmailDetailsUi(
     from: String,
@@ -92,12 +95,19 @@ fun EmailDetailsUi(
                 EmailDetailsSenderInfo(profileImage = profileImage, isPromotional = isPromotional, from = from)
 
                 Spacer(Modifier.height(16.dp))
-                val state = rememberRichTextState()
-                RichTextEditor(
-                    state.setHtml(emailDetailsModel.htmlBody ?: emailDetailsModel.plainBody),
+                AndroidView(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .weight(1f)
+                        .verticalScroll(rememberScrollState())
+                        .weight(1f),
+                    factory = { context ->
+                        WebView(context).apply {
+                            webViewClient = WebViewClient()
+                            settings.javaScriptEnabled = true
+                            loadData(emailDetailsModel.htmlBody ?: emailDetailsModel.plainBody, "text/html", "UTF-8")
+                            isVerticalScrollBarEnabled = true
+                        }
+                    }
                 )
             }
         }
