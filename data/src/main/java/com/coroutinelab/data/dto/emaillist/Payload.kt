@@ -5,8 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Payload(
-    @SerialName("attachments")
-    val attachments: List<Attachment?>,
     @SerialName("date")
     val date: String?,
     @SerialName("email")

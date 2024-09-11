@@ -18,32 +18,48 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.coroutinelab.coreui.component.EmailDetailsBottomSection
 import com.coroutinelab.coreui.component.EmailDetailsSenderInfo
 import com.coroutinelab.coreui.component.EmailDetailsSubject
+import com.coroutinelab.coreui.component.LinearFullScreenProgress
+import com.coroutinelab.domain.model.emaildetails.EmailDetailsModel
 import com.coroutinelab.presentation.emaildetails.mvi.EmailDetailsContract
 import com.coroutinelab.presentation.emaildetails.mvi.EmailDetailsViewModel
 import com.mohamedrejeb.richeditor.model.rememberRichTextState
 import com.mohamedrejeb.richeditor.ui.material3.RichTextEditor
 
 @Composable
-fun EmailDetailsScreen(viewModel: EmailDetailsViewModel = hiltViewModel()) {
+fun EmailDetailsScreen(
+    viewModel: EmailDetailsViewModel = hiltViewModel(),
+    from: String,
+    profileImage: String?,
+    subject: String,
+    isPromotional: Boolean
+) {
     val states = viewModel.state.collectAsState().value
     LaunchedEffect(states) {
         if (states.isLoading) {
             viewModel.event(EmailDetailsContract.EmailDetailsEvent.LoadEmailDetails)
         }
     }
+    if (states.isLoading) {
+        LinearFullScreenProgress()
+    }
     states.details?.let {
-        EmailDetailsUi()
+        EmailDetailsUi(from, profileImage, subject, isPromotional, it)
     }
 }
 
 @Composable
-fun EmailDetailsUi() {
+fun EmailDetailsUi(
+    from: String,
+    profileImage: String?,
+    subject: String,
+    isPromotional: Boolean,
+    emailDetailsModel: EmailDetailsModel
+) {
     Column(modifier = Modifier.padding(16.dp)) {
         Column(
             modifier = Modifier
@@ -60,7 +76,7 @@ fun EmailDetailsUi() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     EmailDetailsSubject(
-                        "This is a very long subject message which can be 2 lines",
+                        subject,
                         modifier = Modifier.weight(1f)
                     )
 
@@ -73,12 +89,12 @@ fun EmailDetailsUi() {
 
                 Spacer(Modifier.height(16.dp))
 
-                EmailDetailsSenderInfo()
+                EmailDetailsSenderInfo(profileImage = profileImage, isPromotional = isPromotional, from = from)
 
                 Spacer(Modifier.height(16.dp))
                 val state = rememberRichTextState()
                 RichTextEditor(
-                    state.setHtml("hello"),
+                    state.setHtml(emailDetailsModel.htmlBody ?: emailDetailsModel.plainBody),
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f)
@@ -87,10 +103,4 @@ fun EmailDetailsUi() {
         }
         EmailDetailsBottomSection()
     }
-}
-
-@Preview
-@Composable
-fun EmailDetailsUiPreview() {
-    EmailDetailsUi()
 }

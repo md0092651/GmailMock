@@ -6,4 +6,10 @@ import kotlinx.serialization.Serializable
 object EmailList
 
 @Serializable
-object EmailDetails
+data class EmailDetails(
+    val from: String,
+    val profileImage: String?,
+    val subject: String,
+    val isPromotional: Boolean,
+    val isStarred: Boolean
+)

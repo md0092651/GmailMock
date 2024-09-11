@@ -16,10 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import com.coroutinelab.coreui.functional.getInitials
+import com.coroutinelab.coreui.functional.toFormattedDate
 
 @Composable
 fun EmailItem(
@@ -28,7 +31,8 @@ fun EmailItem(
     senderName: String,
     emailSubject: String,
     emailSnippet: String,
-    isStarred: Boolean
+    isStarred: Boolean,
+    date: String
 ) {
     ConstraintLayout(
         modifier =
@@ -55,7 +59,7 @@ fun EmailItem(
                 .background(color = Color.Green),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = "HV")
+            Text(text = senderName.getInitials())
         }
 
         Text(
@@ -92,13 +96,17 @@ fun EmailItem(
             Modifier.constrainAs(snippet) {
                 top.linkTo(subject.bottom, margin = 4.dp)
                 start.linkTo(from.start)
+                end.linkTo(star.start, margin = 8.dp)
+                width = Dimension.fillToConstraints
             },
             fontWeight = FontWeight.Normal,
-            fontSize = 14.sp
+            fontSize = 14.sp,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis
         )
 
         Text(
-            text = "June 19",
+            text = date.toFormattedDate(),
             modifier =
             Modifier.constrainAs(time) {
                 end.linkTo(parent.end)

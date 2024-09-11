@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 fun HomeAppBar(modifier: Modifier = Modifier) {
     Row(
         modifier = Modifier
-            .padding(horizontal = 8.dp)
+            .padding(start = 16.dp, top = 16.dp, end = 16.dp)
             .fillMaxWidth()
             .height(64.dp)
             .background(

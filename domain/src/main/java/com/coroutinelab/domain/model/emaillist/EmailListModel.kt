@@ -1,7 +1,8 @@
 package com.coroutinelab.domain.model.emaillist
 
-import com.coroutinelab.domain.model.common.FileInfo
+import javax.annotation.concurrent.Immutable
 
+@Immutable
 data class EmailListItemModel(
     val id: String,
     val from: String,
@@ -11,6 +12,5 @@ data class EmailListItemModel(
     val date: String,
     val isImportant: Boolean,
     val isStarred: Boolean,
-    val isPromotional: Boolean,
-    val fileInfo: List<FileInfo>
+    val isPromotional: Boolean
 )

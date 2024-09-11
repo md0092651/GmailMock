@@ -22,13 +22,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun EmailDetailsSenderInfo(modifier: Modifier = Modifier, canReply: Boolean = true) {
+fun EmailDetailsSenderInfo(modifier: Modifier = Modifier, profileImage: String?, isPromotional: Boolean, from: String) {
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
         CircularProfileImage(
             modifier = Modifier,
-            imageSource = "https://i.pravatar.cc/250?img=5",
+            imageSource = profileImage!!,
             size = 32.dp
         )
 
@@ -42,7 +42,7 @@ fun EmailDetailsSenderInfo(modifier: Modifier = Modifier, canReply: Boolean = tr
             ) {
                 Text(
                     modifier = Modifier.weight(4f),
-                    text = "Some name which is single line and can ",
+                    text = from,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     maxLines = 1,
@@ -64,7 +64,7 @@ fun EmailDetailsSenderInfo(modifier: Modifier = Modifier, canReply: Boolean = tr
             )
         }
 
-        if (canReply) {
+        if (!isPromotional) {
             IconButton(
                 onClick = {},
                 modifier = Modifier
