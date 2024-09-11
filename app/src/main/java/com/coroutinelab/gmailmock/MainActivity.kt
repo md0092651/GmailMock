@@ -21,9 +21,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.coroutinelab.coreui.component.DetailsAppBar
 import com.coroutinelab.coreui.component.HomeAppBar
+import com.coroutinelab.coreui.theme.GmailMockTheme
 import com.coroutinelab.gmailmock.navigation.EmailDetails
 import com.coroutinelab.gmailmock.navigation.EmailList
-import com.coroutinelab.gmailmock.ui.theme.GmailMockTheme
 import com.coroutinelab.presentation.emaildetails.EmailDetailsScreen
 import com.coroutinelab.presentation.emaillist.EmailListScreen
 import dagger.hilt.android.AndroidEntryPoint

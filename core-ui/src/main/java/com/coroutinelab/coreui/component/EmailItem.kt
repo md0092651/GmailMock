@@ -23,6 +23,8 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.coroutinelab.coreui.functional.getInitials
 import com.coroutinelab.coreui.functional.toFormattedDate
+import com.coroutinelab.coreui.theme.StartDisabled
+import com.coroutinelab.coreui.theme.Yellow500
 
 @Composable
 fun EmailItem(
@@ -120,7 +122,7 @@ fun EmailItem(
 
             Icons.Default.Star,
             contentDescription = null,
-            tint = if (isStarred) Color(0xFFFFD700) else Color(0x706B6B6E),
+            tint = if (isStarred) Yellow500 else StartDisabled,
             modifier =
             Modifier
                 .size(24.dp)

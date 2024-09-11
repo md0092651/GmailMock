@@ -1,4 +1,4 @@
-package com.coroutinelab.gmailmock.ui.theme
+package com.coroutinelab.coreui.theme
 
 import android.app.Activity
 import android.os.Build
