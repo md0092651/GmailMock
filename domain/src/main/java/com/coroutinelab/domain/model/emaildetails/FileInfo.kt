@@ -1,4 +1,4 @@
-package com.coroutinelab.domain.model.common
+package com.coroutinelab.domain.model.emaildetails
 
 data class FileInfo(
     val filename: String,

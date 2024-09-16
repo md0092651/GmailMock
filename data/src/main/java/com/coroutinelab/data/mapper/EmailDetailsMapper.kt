@@ -6,8 +6,8 @@ import com.coroutinelab.core.mapper.ResultMapper
 import com.coroutinelab.data.dto.emaildetails.EmailDetailsDto
 import com.coroutinelab.data.dto.emaildetails.RecipientInfo
 import com.coroutinelab.data.dto.emaildetails.SenderInfo
-import com.coroutinelab.domain.model.common.FileInfo
 import com.coroutinelab.domain.model.emaildetails.EmailDetailsModel
+import com.coroutinelab.domain.model.emaildetails.FileInfo
 import com.coroutinelab.domain.model.emaildetails.RecipientModel
 import com.coroutinelab.domain.model.emaildetails.SenderInfoModel
 import javax.inject.Inject
@@ -56,7 +56,7 @@ constructor() : ResultMapper<ArrayList<EmailDetailsDto>, EmailDetailsModel> {
     }
 
     private fun List<RecipientInfo>?.toRecipientModel(): List<RecipientModel> {
-        return this.mapOrDefault(emptyList()) {
+        return this.mapOrDefault {
             RecipientModel(
                 email = it.email,
                 name = it.name

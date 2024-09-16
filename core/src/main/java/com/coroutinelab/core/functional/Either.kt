@@ -11,3 +11,4 @@ inline fun <L, R, T> Either<L, R>.fold(left: (L) -> T, right: (R) -> T): T =
         is Either.Left -> left(value)
         is Either.Right -> right(value)
     }
+

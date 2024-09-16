@@ -1,7 +1,5 @@
 package com.coroutinelab.domain.model.emaildetails
 
-import com.coroutinelab.domain.model.common.FileInfo
-
 data class EmailDetailsModel(
     val id: String,
     val from: SenderInfoModel,
