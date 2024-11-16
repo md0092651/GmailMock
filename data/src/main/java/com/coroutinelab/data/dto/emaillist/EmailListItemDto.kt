@@ -22,5 +22,5 @@ data class EmailListItemDto(
     @SerialName("threadId")
     val threadId: String?,
     @SerialName("timestamp")
-    val timestamp: Long?
+    val timestamp: Int?
 )

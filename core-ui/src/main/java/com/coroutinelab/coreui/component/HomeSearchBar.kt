@@ -15,30 +15,37 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.coroutinelab.coreui.R
 
 @Composable
-fun HomeAppBar(modifier: Modifier = Modifier) {
+fun HomeAppBar(modifier: Modifier = Modifier, onMenuClick: () -> Unit) {
     Row(
-        modifier = Modifier
-            .padding(start = 16.dp, top = 16.dp, end = 16.dp)
+        modifier = modifier
             .fillMaxWidth()
             .height(64.dp)
             .background(
                 color = MaterialTheme.colorScheme.surfaceContainer,
-                shape = RoundedCornerShape(40.dp)
+                shape = RoundedCornerShape(48.dp)
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = { }) {
-            Icon(Icons.Default.Menu, contentDescription = "Back")
+        IconButton(onClick = { onMenuClick() }) {
+            Icon(
+                imageVector = Icons.Default.Menu,
+                contentDescription = "Menu"
+            )
         }
 
-        Text("Search in email", modifier = Modifier.weight(1f))
+        Text(
+            text = stringResource(R.string.txt_search),
+            modifier = Modifier.weight(1f)
+        )
 
         CircularProfileImage(
-            modifier = Modifier.padding(end = 16.dp),
+            modifier = Modifier.padding(horizontal = 16.dp),
             imageSource = "https://i.pravatar.cc/250?img=5"
         )
     }
@@ -47,5 +54,5 @@ fun HomeAppBar(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun HomeAppBarPreview() {
-    HomeAppBar()
+    HomeAppBar {}
 }

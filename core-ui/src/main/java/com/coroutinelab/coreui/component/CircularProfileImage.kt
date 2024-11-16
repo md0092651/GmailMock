@@ -22,7 +22,10 @@ fun CircularProfileImage(modifier: Modifier, imageSource: String, size: Dp = 32.
         contentDescription = null,
         modifier =
         modifier.size(size)
-            .background(color = Color.Gray, shape = CircleShape)
+            .background(
+                color = Color.Gray,
+                shape = CircleShape
+            )
             .clip(CircleShape),
         contentScale = ContentScale.Crop
     )

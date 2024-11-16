@@ -12,9 +12,7 @@ import com.coroutinelab.domain.model.emaildetails.RecipientModel
 import com.coroutinelab.domain.model.emaildetails.SenderInfoModel
 import javax.inject.Inject
 
-class EmailDetailsMapper
-@Inject
-constructor() : ResultMapper<ArrayList<EmailDetailsDto>, EmailDetailsModel> {
+class EmailDetailsMapper @Inject constructor() : ResultMapper<ArrayList<EmailDetailsDto>, EmailDetailsModel> {
     override fun map(input: ArrayList<EmailDetailsDto>): EmailDetailsModel = input.first().toEmailDetailsModel()
 
     private fun EmailDetailsDto.toEmailDetailsModel(): EmailDetailsModel {
@@ -25,8 +23,7 @@ constructor() : ResultMapper<ArrayList<EmailDetailsDto>, EmailDetailsModel> {
             cc = payload.cc.toRecipientModel(),
             bcc = payload.bcc.toRecipientModel(),
             subject = payload.subject.orEmpty(),
-            htmlBody = body?.html,
-            plainBody = body?.text.orEmpty(),
+            htmlBody = body?.html ?: body?.text ?: "",
             date = payload.date.orEmpty(),
             isImportant = isImportant.orDefault(),
             isStarred = labels.contains("Starred"),
@@ -34,15 +31,15 @@ constructor() : ResultMapper<ArrayList<EmailDetailsDto>, EmailDetailsModel> {
             fileInfo =
             payload.attachments.mapOrDefault(emptyList()) {
                 FileInfo(
-                    filename = it?.filename.orEmpty(),
-                    mimeType = it?.mimeType.orEmpty(),
-                    size = it?.size ?: 0L,
-                    downLoadUrl = it?.downloadUrl
+                    filename = it!!.filename.orEmpty(),
+                    mimeType = it.mimeType.orEmpty(),
+                    size = it.size ?: 0L,
+                    downLoadUrl = it.downloadUrl
                 )
             },
             labels =
             labels.mapOrDefault(emptyList()) {
-                it.orEmpty()
+                it!!
             }
         )
     }

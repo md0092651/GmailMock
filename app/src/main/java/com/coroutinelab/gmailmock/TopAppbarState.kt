@@ -1,6 +1,6 @@
 package com.coroutinelab.gmailmock
 
-enum class TopAppBarState {
+enum class TopAppbarState {
     HOME,
     DETAILS
 }

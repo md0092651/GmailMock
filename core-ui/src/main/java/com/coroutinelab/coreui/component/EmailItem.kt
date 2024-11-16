@@ -3,12 +3,12 @@ package com.coroutinelab.coreui.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,14 +17,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import com.coroutinelab.coreui.functional.getInitials
-import com.coroutinelab.coreui.functional.toFormattedDate
-import com.coroutinelab.coreui.theme.StartDisabled
-import com.coroutinelab.coreui.theme.Yellow500
 
 @Composable
 fun EmailItem(
@@ -37,12 +34,9 @@ fun EmailItem(
     date: String
 ) {
     ConstraintLayout(
-        modifier =
-        modifier
-            .fillMaxWidth()
-            .padding(12.dp)
+        modifier = modifier.fillMaxWidth()
     ) {
-        val (avatar, from, subject, snippet, time, star, buttons) = createRefs()
+        val (avatar, from, subject, snippet, time, star) = createRefs()
 
         profileImageUrl?.let {
             CircularProfileImage(
@@ -61,7 +55,7 @@ fun EmailItem(
                 .background(color = Color.Green),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = senderName.getInitials())
+            Text(text = senderName) // We will create extension function later to show initials
         }
 
         Text(
@@ -108,7 +102,7 @@ fun EmailItem(
         )
 
         Text(
-            text = date.toFormattedDate(),
+            text = date,
             modifier =
             Modifier.constrainAs(time) {
                 end.linkTo(parent.end)
@@ -119,10 +113,9 @@ fun EmailItem(
         )
 
         Icon(
-
             Icons.Default.Star,
-            contentDescription = null,
-            tint = if (isStarred) Yellow500 else StartDisabled,
+            contentDescription = "markedImportant",
+            tint = if (isStarred) Color(0xFFFFD700) else Color(0x706B6B6E),
             modifier =
             Modifier
                 .size(24.dp)
@@ -130,16 +123,23 @@ fun EmailItem(
                     end.linkTo(parent.end)
                     top.linkTo(time.bottom, margin = 4.dp)
                 }
+
         )
     }
 }
-/*
+
 @Preview
 @Composable
 fun EmailItemPreview() {
-    EmailItem(
-        modifier = Modifier,
-        onEmailClick = {},
-        data = it
-    )
-}*/
+    Surface {
+        EmailItem(
+            modifier = Modifier,
+            profileImageUrl = "https://i.pravatar.cc/250?img=5",
+            senderName = "Coroutine Lab",
+            emailSubject = "Important Notice",
+            emailSnippet = "This is an important mail about ...",
+            isStarred = true,
+            date = "17 Sept"
+        )
+    }
+}

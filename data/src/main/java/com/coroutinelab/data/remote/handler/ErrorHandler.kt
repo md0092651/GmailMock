@@ -13,7 +13,6 @@ fun Throwable.toEither(): Either<Failure, Nothing> {
             val message = message()
             Either.Left(Failure.ServerError(code, message))
         }
-
         else -> Either.Left(Failure.UnknownError(this))
     }
 }

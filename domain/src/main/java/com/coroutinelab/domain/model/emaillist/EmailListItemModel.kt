@@ -1,8 +1,5 @@
 package com.coroutinelab.domain.model.emaillist
 
-import javax.annotation.concurrent.Immutable
-
-@Immutable
 data class EmailListItemModel(
     val id: String,
     val from: String,

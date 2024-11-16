@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.coroutinelab.core_ui"
+    namespace = "com.coroutinelab.coreui"
     compileSdk = 34
 
     defaultConfig {
@@ -23,12 +23,15 @@ android {
             )
         }
     }
+
     buildFeatures {
         compose = true
     }
+
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -42,16 +45,17 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     api(libs.androidx.activity.compose)
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.material3)
     api(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.navigation.runtime.ktx)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.navigation.compose)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
     debugApi(libs.androidx.ui.tooling)
     api(libs.glide)
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.extendedspans)
-    implementation(libs.androidx.material.icons.extended)
-    api(libs.richeditor.compose)
+    api(libs.androidx.material.icons.extended)
 }

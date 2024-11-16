@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RecipientInfo(
     @SerialName("email")
-    val email: String?,
+    val email: String,
     @SerialName("name")
-    val name: String?
+    val name: String
 )

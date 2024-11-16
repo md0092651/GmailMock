@@ -2,26 +2,16 @@ package com.coroutinelab.data.repository
 
 import com.coroutinelab.core.error.Failure
 import com.coroutinelab.core.functional.Either
-import com.coroutinelab.data.dto.emaildetails.Body
-import com.coroutinelab.data.dto.emaildetails.EmailDetailsDto
-import com.coroutinelab.data.dto.emaildetails.SenderInfo
-import com.coroutinelab.data.dto.emaillist.EmailListItemDto
-import com.coroutinelab.data.dto.emaillist.Payload
 import com.coroutinelab.data.mapper.EmailDetailsMapper
 import com.coroutinelab.data.mapper.EmailListMapper
-import com.coroutinelab.data.remote.api.ApiServices
+import com.coroutinelab.data.remote.api.ApiService
 import com.coroutinelab.data.remote.handler.safeApiCall
-import com.coroutinelab.domain.model.emaildetails.EmailDetailsModel
 import com.coroutinelab.domain.model.emaillist.EmailListItemModel
-import com.coroutinelab.domain.repository.EmailRepository
-import kotlinx.coroutines.runBlocking
-import retrofit2.Response
+import com.coroutinelab.domain.respository.EmailRepository
 import javax.inject.Inject
 
-class EmailRepositoryImpl
-@Inject
-constructor(
-    private val apiService: ApiServices,
+class EmailRepositoryImpl @Inject constructor(
+    private val apiService: ApiService,
     private val emailListMapper: EmailListMapper,
     private val emailDetailsMapper: EmailDetailsMapper
 ) : EmailRepository {
@@ -31,14 +21,34 @@ constructor(
             mapper = { emailListMapper.map(it) }
         )
 
-    override suspend fun getEmailDetails(): Either<Failure, EmailDetailsModel> =
+    override suspend fun getEmailDetails() =
         safeApiCall(
             apiCall = { apiService.getEmailDetail() },
             mapper = { emailDetailsMapper.map(it) }
         )
 }
 
-class MockApiService : ApiServices {
+/*
+fun main() =
+    runBlocking {
+        // Create mock instances
+        val apiService = MockApiService()
+        val emailListMapper = EmailListMapper()
+        val emailDetailsMapper = EmailDetailsMapper()
+
+        // Initialize EmailRepositoryImpl with mock dependencies
+        val emailRepository = EmailRepositoryImpl(apiService, emailListMapper, emailDetailsMapper)
+
+        // Test getEmailList
+        val emailListResult = emailRepository.getEmailList()
+        println("Email List Result: $emailListResult")
+
+        // Test getEmailDetails
+        val emailDetailsResult = emailRepository.getEmailDetails()
+        println("Email Details Result: $emailDetailsResult")
+    }
+
+class MockApiService : ApiService {
     override suspend fun getEmailList(): Response<ArrayList<EmailListItemDto>> {
         val mockEmailList = arrayListOf(
             EmailListItemDto(
@@ -50,7 +60,7 @@ class MockApiService : ApiServices {
                 snippet = "Mock snippet",
                 subject = "Mock subject",
                 threadId = "thread-1",
-                timestamp = System.currentTimeMillis()
+                timestamp = 1
             )
         )
         return Response.success(mockEmailList)
@@ -86,22 +96,4 @@ class MockApiService : ApiServices {
         return Response.success(mockEmailDetails)
     }
 }
-
-fun main() =
-    runBlocking {
-        // Create mock instances
-        val apiService = MockApiService()
-        val emailListMapper = EmailListMapper()
-        val emailDetailsMapper = EmailDetailsMapper()
-
-        // Initialize EmailRepositoryImpl with mock dependencies
-        val emailRepository = EmailRepositoryImpl(apiService, emailListMapper, emailDetailsMapper)
-
-        // Test getEmailList
-        val emailListResult = emailRepository.getEmailList()
-        println("Email List Result: $emailListResult")
-
-        // Test getEmailDetails
-        val emailDetailsResult = emailRepository.getEmailDetails()
-        println("Email Details Result: $emailDetailsResult")
-    }
+*/

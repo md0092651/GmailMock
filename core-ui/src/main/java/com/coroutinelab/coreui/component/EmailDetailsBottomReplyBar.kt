@@ -19,6 +19,7 @@ import androidx.compose.material.icons.outlined.Mood
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -27,11 +28,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.coroutinelab.coreui.R
 
 @Composable
 fun EmailDetailsBottomSection(modifier: Modifier = Modifier, isReplyMode: Boolean = false) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         IconButton(
             onClick = {},
             modifier = Modifier
@@ -40,9 +47,7 @@ fun EmailDetailsBottomSection(modifier: Modifier = Modifier, isReplyMode: Boolea
             Icon(
                 imageVector = Icons.Outlined.AttachFile,
                 contentDescription = null,
-                modifier =
-                Modifier
-                    .size(24.dp)
+                modifier = Modifier.size(24.dp)
             )
         }
 
@@ -64,15 +69,12 @@ fun EmailDetailsBottomSection(modifier: Modifier = Modifier, isReplyMode: Boolea
 
         IconButton(
             onClick = {},
-            modifier = Modifier
-                .size(30.dp)
+            modifier = Modifier.size(32.dp)
         ) {
             Icon(
                 imageVector = Icons.Outlined.Mood,
                 contentDescription = null,
-                modifier =
-                Modifier
-                    .size(24.dp)
+                modifier = Modifier.size(24.dp)
             )
         }
     }
@@ -93,9 +95,7 @@ fun ReplyBarWithInput() {
                     Icon(
                         imageVector = Icons.AutoMirrored.Outlined.Shortcut,
                         contentDescription = null,
-                        modifier =
-                        Modifier
-                            .size(24.dp)
+                        modifier = Modifier.size(24.dp)
                     )
                 }
                 Icon(
@@ -135,8 +135,8 @@ fun ReplyBarWithInput() {
                 }
             }
             TextField(
-                value = "",
-                onValueChange = { /* Handle text input */ },
+                value = "Reply",
+                onValueChange = { },
                 placeholder = { Text(text = "Compose email") },
                 colors = TextFieldDefaults.colors().copy(
                     focusedContainerColor = Color.Transparent,
@@ -171,7 +171,7 @@ private fun ReplyBar() {
             tint = MaterialTheme.colorScheme.onSurface
         )
         Spacer(modifier = Modifier.width(8.dp))
-        Text("Reply", color = MaterialTheme.colorScheme.onSurface)
+        Text(stringResource(R.string.txt_reply), color = MaterialTheme.colorScheme.onSurface)
         Spacer(modifier = Modifier.weight(1f))
         IconButton(
             onClick = {},
@@ -187,5 +187,21 @@ private fun ReplyBar() {
                     .size(24.dp)
             )
         }
+    }
+}
+
+@Preview
+@Composable
+fun EmailDetailsBottomReplyBarPreview() {
+    Surface {
+        EmailDetailsBottomSection()
+    }
+}
+
+@Preview
+@Composable
+fun EmailDetailsBottomWithReplyBarPreview() {
+    Surface {
+        EmailDetailsBottomSection(isReplyMode = true)
     }
 }

@@ -3,21 +3,21 @@ package com.coroutinelab.presentation.emaildetails.mvi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coroutinelab.core.functional.fold
-import com.coroutinelab.domain.usecase.emaillist.GetEmailDetailsUseCase
+import com.coroutinelab.coreui.functional.stateInWhileActive
+import com.coroutinelab.domain.usecase.EmailDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class EmailDetailsViewModel @Inject constructor(
-    private val getEmailDetailsEmailsUseCase: GetEmailDetailsUseCase
+    private val detailsUseCase: EmailDetailsUseCase
 ) : ViewModel(), EmailDetailsContract {
 
     private val mutableUIState: MutableStateFlow<EmailDetailsContract.UIState> =
@@ -27,7 +27,9 @@ class EmailDetailsViewModel @Inject constructor(
         MutableSharedFlow()
 
     override val state: StateFlow<EmailDetailsContract.UIState>
-        get() = mutableUIState.asStateFlow()
+        get() = mutableUIState.stateInWhileActive(viewModelScope, EmailDetailsContract.UIState()) {
+            event(EmailDetailsContract.EmailDetailsEvent.LoadEmailDetails)
+        }
     override val effect: SharedFlow<EmailDetailsContract.EmailDetailsEffect>
         get() = mutableSharedFlow.asSharedFlow()
 
@@ -51,9 +53,11 @@ class EmailDetailsViewModel @Inject constructor(
 
     private fun loadEmailDetails() {
         viewModelScope.launch {
-            getEmailDetailsEmailsUseCase().fold(
+            detailsUseCase().fold(
                 {
-                    print("Mithilesh $it")
+                    mutableUIState.update { state ->
+                        state.copy(details = null, isLoading = false, isError = true)
+                    }
                 },
                 {
                     mutableUIState.update { state ->

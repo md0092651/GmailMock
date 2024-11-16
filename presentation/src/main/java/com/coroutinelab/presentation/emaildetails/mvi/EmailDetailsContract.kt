@@ -3,12 +3,20 @@ package com.coroutinelab.presentation.emaildetails.mvi
 import com.coroutinelab.coreui.mvi.MVIContract
 import com.coroutinelab.domain.model.emaildetails.EmailDetailsModel
 
-interface EmailDetailsContract :
-    MVIContract<
-        EmailDetailsContract.UIState,
-        EmailDetailsContract.EmailDetailsEffect,
-        EmailDetailsContract.EmailDetailsEvent
-        > {
+interface EmailDetailsContract : MVIContract<
+    EmailDetailsContract.UIState,
+    EmailDetailsContract.EmailDetailsEffect,
+    EmailDetailsContract.EmailDetailsEvent
+    > {
+    data class UIState(
+        val details: EmailDetailsModel? = null,
+        val isLoading: Boolean = true,
+        val isError: Boolean = false
+    )
+
+    sealed class EmailDetailsEffect {
+        data object NavigateToDraftEmail : EmailDetailsEffect()
+    }
 
     sealed class EmailDetailsEvent {
         data object LoadEmailDetails : EmailDetailsEvent()
@@ -24,14 +32,5 @@ interface EmailDetailsContract :
         data object OnReplyDropDown : EmailDetailsEvent()
         data object OnBottomBarEmojiReply : EmailDetailsEvent()
         data object OnBottomBarReply : EmailDetailsEvent()
-    }
-
-    data class UIState(
-        val details: EmailDetailsModel? = null,
-        val isLoading: Boolean = true
-    )
-
-    sealed class EmailDetailsEffect {
-        data object NavigateToDraftEmail : EmailDetailsEffect()
     }
 }

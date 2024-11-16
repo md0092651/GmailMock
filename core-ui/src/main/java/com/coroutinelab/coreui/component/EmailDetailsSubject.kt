@@ -1,6 +1,7 @@
 package com.coroutinelab.coreui.component
 
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -10,13 +11,14 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import me.saket.extendedspans.ExtendedSpans
 import me.saket.extendedspans.RoundedCornerSpanPainter
 import me.saket.extendedspans.drawBehind
 
 @Composable
-fun EmailDetailsSubject(subjectText: String = "Sample  ", spannedText: String = "Tag", modifier: Modifier = Modifier) {
+fun EmailDetailsSubject(modifier: Modifier = Modifier, subjectText: String, tag: String) {
     val text = buildAnnotatedString {
         withStyle(
             style = SpanStyle(
@@ -32,7 +34,7 @@ fun EmailDetailsSubject(subjectText: String = "Sample  ", spannedText: String = 
                 background = MaterialTheme.colorScheme.primaryContainer
             )
         ) {
-            append(spannedText)
+            append(tag)
         }
     }
 
@@ -58,4 +60,15 @@ fun EmailDetailsSubject(subjectText: String = "Sample  ", spannedText: String = 
             extendedSpans.onTextLayout(result)
         }
     )
+}
+
+@Preview
+@Composable
+fun EmailDetailsSubjectPreview() {
+    Surface {
+        EmailDetailsSubject(
+            subjectText = "Important message ",
+            tag = "Inbox"
+        )
+    }
 }
