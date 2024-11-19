@@ -4,6 +4,7 @@ import com.coroutinelab.core.error.Failure
 import com.coroutinelab.core.functional.Either
 import com.coroutinelab.domain.model.emaildetails.EmailDetailsModel
 import com.coroutinelab.domain.respository.EmailRepository
+import com.coroutinelab.domain.usecase.emaildetails.EmailDetailsUseCase
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery

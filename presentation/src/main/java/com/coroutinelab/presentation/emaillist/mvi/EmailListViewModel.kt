@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coroutinelab.core.functional.fold
 import com.coroutinelab.coreui.functional.stateInWhileActive
-import com.coroutinelab.domain.usecase.EmailListUseCase
+import com.coroutinelab.domain.usecase.emaillist.EmailListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

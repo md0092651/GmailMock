@@ -47,3 +47,18 @@ subprojects {
         }
     }
 }
+
+tasks.register("runAllUnitTests") {
+    subprojects.forEach { subproject ->
+        subproject.tasks.withType<Test>().configureEach {
+            if (testClassesDirs.files.any { it.exists() }) {
+                dependsOn(this)
+                reports {
+                    junitXml.required.set(true)
+                    html.required.set(true)
+                }
+                reports.html.outputLocation.set(file("${subproject.buildDir}/reports/tests"))
+            }
+        }
+    }
+}

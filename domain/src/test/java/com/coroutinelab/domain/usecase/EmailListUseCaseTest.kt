@@ -4,6 +4,7 @@ import com.coroutinelab.core.error.Failure
 import com.coroutinelab.core.functional.Either
 import com.coroutinelab.domain.model.emaillist.EmailListItemModel
 import com.coroutinelab.domain.respository.EmailRepository
+import com.coroutinelab.domain.usecase.emaillist.EmailListUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
