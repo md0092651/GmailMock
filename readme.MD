@@ -41,7 +41,7 @@ To run the tests, use the following Gradle commands:
 
 - **Unit Tests**:
   ```sh
-  ./gradlew test
+  ./gradlew runAllUnitTests
 
 ## Screenshot Tests
 
