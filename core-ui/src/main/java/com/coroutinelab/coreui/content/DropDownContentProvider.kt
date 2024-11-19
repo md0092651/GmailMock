@@ -3,7 +3,7 @@ package com.coroutinelab.coreui.content
 import com.coroutinelab.coreui.uimodel.DropDownMenuItem
 
 fun getDropDownMenuList() =
-    listOf<DropDownMenuItem>(
+    listOf(
         DropDownMenuItem(title = "Move to") {},
         DropDownMenuItem(title = "Snooze") {},
         DropDownMenuItem(title = "Change Labels") {},

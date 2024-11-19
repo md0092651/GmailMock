@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.coroutinelab.gmailmock"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -76,5 +76,5 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.navigation.compose)
     api(libs.kotlinx.serialization.json)
-    debugImplementation(libs.androidx.ui.test.manifest.v173)
+    debugImplementation(libs.androidx.ui.test.manifest)
 }

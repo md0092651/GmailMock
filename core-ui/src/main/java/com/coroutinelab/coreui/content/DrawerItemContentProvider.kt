@@ -1,6 +1,7 @@
 package com.coroutinelab.coreui.content
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.automirrored.filled.LabelImportant
 import androidx.compose.material.icons.automirrored.filled.ScheduleSend
 import androidx.compose.material.icons.filled.AllInbox
@@ -10,10 +11,8 @@ import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.filled.Drafts
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Forum
-import androidx.compose.material.icons.filled.Help
 import androidx.compose.material.icons.filled.Inbox
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.LabelImportant
 import androidx.compose.material.icons.filled.Outbox
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Snooze
@@ -32,7 +31,7 @@ fun getDrawerItemsList() =
         DrawerData.Category("All Label"),
         DrawerData.Item("Starred", Icons.Filled.Star),
         DrawerData.Item("Snoozed", Icons.Filled.Snooze),
-        DrawerData.Item("Important", Icons.Filled.LabelImportant),
+        DrawerData.Item("Important", Icons.AutoMirrored.Filled.LabelImportant),
         DrawerData.Item("Send", Icons.AutoMirrored.Filled.LabelImportant),
         DrawerData.Item("Schedule", Icons.AutoMirrored.Filled.ScheduleSend),
         DrawerData.Item("Outbox", Icons.Filled.Outbox),
@@ -44,5 +43,5 @@ fun getDrawerItemsList() =
         DrawerData.Item("Contacts", Icons.Filled.Contacts),
         DrawerData.Divider,
         DrawerData.Item("Settings", Icons.Filled.Settings),
-        DrawerData.Item("Help", Icons.Filled.Help)
+        DrawerData.Item("Help", Icons.AutoMirrored.Filled.Help)
     )
