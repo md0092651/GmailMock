@@ -27,16 +27,16 @@ import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.coroutinelab.coreui.content.getDropDownMenuList
+import com.coroutinelab.coreui.theme.Dimensions
 
 @Composable
 fun DetailsAppBar(modifier: Modifier = Modifier, navController: NavController) {
     val density = LocalDensity.current
     var isMenuExpanded by remember { mutableStateOf(false) }
-    var offsetX by remember { mutableStateOf(0.dp) }
+    var offsetX by remember { mutableStateOf(Dimensions.none) }
     var parentWidth by remember { mutableIntStateOf(0) }
 
     Row(
@@ -69,7 +69,7 @@ fun DetailsAppBar(modifier: Modifier = Modifier, navController: NavController) {
             },
             expanded = isMenuExpanded,
             onDismissRequest = { isMenuExpanded = false },
-            offset = DpOffset(offsetX, 0.dp)
+            offset = DpOffset(offsetX, Dimensions.none)
         ) {
             getDropDownMenuList().forEach {
                 DropdownMenuItem(

@@ -30,13 +30,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.coroutinelab.coreui.component.EmailDetailsBottomSection
 import com.coroutinelab.coreui.component.EmailDetailsSenderInfo
 import com.coroutinelab.coreui.component.EmailDetailsSubject
 import com.coroutinelab.coreui.component.FullScreenError
 import com.coroutinelab.coreui.component.LinearFullScreenProgress
+import com.coroutinelab.coreui.theme.Dimensions
 import com.coroutinelab.domain.model.emaildetails.EmailDetailsModel
 import com.coroutinelab.presentation.emaildetails.mvi.EmailDetailsContract
 
@@ -90,12 +90,12 @@ fun EmailDetailsUi(
         }
     }
 
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier.padding(Dimensions.dimen_16)) {
         Column(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(Dimensions.dimen_16)
         ) {
             Column(
                 modifier = Modifier
@@ -114,12 +114,12 @@ fun EmailDetailsUi(
                         imageVector = Icons.Outlined.Star,
                         tint = if (model.isStarred) Color(0xFFFFD700) else Color(0x706B6B6E),
                         contentDescription = null,
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(Dimensions.dimen_24)
                     )
                 }
-                Spacer(Modifier.height(16.dp))
+                Spacer(Modifier.height(Dimensions.dimen_16))
                 EmailDetailsSenderInfo(profileImageUrl = profileImage!!, isPromotional = isPromotional, from = from)
-                Spacer(Modifier.height(16.dp))
+                Spacer(Modifier.height(Dimensions.dimen_16))
 
                 Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
                     if (isWebViewLoading) {

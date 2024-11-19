@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.coroutinelab.coreui.R
+import com.coroutinelab.coreui.theme.Dimensions
 
 @Composable
 fun FullScreenError(errorMessage: String, @DrawableRes errorMessageIcon: Int = R.drawable.alert_error_icon) {
@@ -30,11 +30,11 @@ fun FullScreenError(errorMessage: String, @DrawableRes errorMessageIcon: Int = R
             painter = painterResource(errorMessageIcon),
             contentDescription = null,
             modifier = Modifier
-                .size(64.dp)
+                .size(Dimensions.dimen_64)
         )
 
         Text(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(Dimensions.dimen_16),
             text = errorMessage,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleLarge

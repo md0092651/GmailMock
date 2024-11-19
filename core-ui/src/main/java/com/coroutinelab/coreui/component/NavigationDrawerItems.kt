@@ -11,12 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.unit.dp
+import com.coroutinelab.coreui.theme.Dimensions
 
 @Composable
 fun DrawerTitleItem(title: String) {
     Text(
-        modifier = Modifier.padding(8.dp),
+        modifier = Modifier.padding(Dimensions.dimen_8),
         text = title,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         style = MaterialTheme.typography.titleSmall
@@ -38,7 +38,7 @@ fun DrawerMenuItem(title: String, icon: ImageVector, onCLick: () -> Unit) {
                 imageVector = icon,
                 contentDescription = title,
                 tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(Dimensions.dimen_24)
             )
         },
         onClick = { onCLick() },
@@ -49,7 +49,7 @@ fun DrawerMenuItem(title: String, icon: ImageVector, onCLick: () -> Unit) {
 @Composable
 fun DrawerDivider() {
     HorizontalDivider(
-        modifier = Modifier.fillMaxWidth().padding(8.dp),
+        modifier = Modifier.fillMaxWidth().padding(Dimensions.dimen_8),
         color = MaterialTheme.colorScheme.outline
     )
 }
@@ -58,7 +58,7 @@ fun DrawerDivider() {
 fun DrawerCategory(title: String) {
     Text(
         text = title,
-        modifier = Modifier.padding(8.dp),
+        modifier = Modifier.padding(Dimensions.dimen_8),
         color = MaterialTheme.colorScheme.onSecondaryContainer,
         style = MaterialTheme.typography.labelSmall
     )

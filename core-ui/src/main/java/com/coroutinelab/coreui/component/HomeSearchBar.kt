@@ -17,18 +17,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.coroutinelab.coreui.R
+import com.coroutinelab.coreui.theme.Dimensions
 
 @Composable
 fun HomeAppBar(modifier: Modifier = Modifier, onMenuClick: () -> Unit) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(64.dp)
+            .height(Dimensions.dimen_64)
             .background(
                 color = MaterialTheme.colorScheme.surfaceContainer,
-                shape = RoundedCornerShape(48.dp)
+                shape = RoundedCornerShape(Dimensions.dimen_48)
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -45,7 +45,7 @@ fun HomeAppBar(modifier: Modifier = Modifier, onMenuClick: () -> Unit) {
         )
 
         CircularProfileImage(
-            modifier = Modifier.padding(horizontal = 16.dp),
+            modifier = Modifier.padding(horizontal = Dimensions.dimen_16),
             imageSource = "https://i.pravatar.cc/250?img=5"
         )
     }

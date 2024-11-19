@@ -30,8 +30,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.coroutinelab.coreui.R
+import com.coroutinelab.coreui.theme.Dimensions
 
 @Composable
 fun EmailDetailsBottomSection(modifier: Modifier = Modifier, isReplyMode: Boolean = false) {
@@ -42,12 +42,12 @@ fun EmailDetailsBottomSection(modifier: Modifier = Modifier, isReplyMode: Boolea
         IconButton(
             onClick = {},
             modifier = Modifier
-                .size(30.dp)
+                .size(Dimensions.dimen_32)
         ) {
             Icon(
                 imageVector = Icons.Outlined.AttachFile,
                 contentDescription = null,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(Dimensions.dimen_24)
             )
         }
 
@@ -55,8 +55,11 @@ fun EmailDetailsBottomSection(modifier: Modifier = Modifier, isReplyMode: Boolea
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .background(MaterialTheme.colorScheme.surfaceContainerHighest, shape = RoundedCornerShape(24.dp))
-                .padding(horizontal = 16.dp, vertical = 8.dp),
+                .background(
+                    MaterialTheme.colorScheme.surfaceContainerHighest,
+                    shape = RoundedCornerShape(Dimensions.dimen_24)
+                )
+                .padding(horizontal = Dimensions.dimen_16, vertical = Dimensions.dimen_8),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -69,12 +72,12 @@ fun EmailDetailsBottomSection(modifier: Modifier = Modifier, isReplyMode: Boolea
 
         IconButton(
             onClick = {},
-            modifier = Modifier.size(32.dp)
+            modifier = Modifier.size(Dimensions.dimen_32)
         ) {
             Icon(
                 imageVector = Icons.Outlined.Mood,
                 contentDescription = null,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(Dimensions.dimen_24)
             )
         }
     }
@@ -88,14 +91,14 @@ fun ReplyBarWithInput() {
                 IconButton(
                     onClick = {},
                     modifier = Modifier
-                        .padding(4.dp)
-                        .size(24.dp)
+                        .padding(Dimensions.dimen_4)
+                        .size(Dimensions.dimen_24)
                         .scale(scaleX = -1f, scaleY = 1f)
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Outlined.Shortcut,
                         contentDescription = null,
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(Dimensions.dimen_24)
                     )
                 }
                 Icon(
@@ -103,34 +106,34 @@ fun ReplyBarWithInput() {
                     contentDescription = "Dropdown",
                     tint = Color.LightGray
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(Dimensions.dimen_8))
                 Spacer(modifier = Modifier.weight(1f))
                 IconButton(
                     onClick = {},
                     modifier = Modifier
-                        .padding(4.dp)
-                        .size(24.dp)
+                        .padding(Dimensions.dimen_4)
+                        .size(Dimensions.dimen_24)
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Outlined.Shortcut,
                         contentDescription = null,
                         modifier =
                         Modifier
-                            .size(24.dp)
+                            .size(Dimensions.dimen_24)
                     )
                 }
                 IconButton(
                     onClick = {},
                     modifier = Modifier
-                        .padding(4.dp)
-                        .size(24.dp)
+                        .padding(Dimensions.dimen_4)
+                        .size(Dimensions.dimen_24)
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Outlined.OpenInNew,
                         contentDescription = null,
                         modifier =
                         Modifier
-                            .size(24.dp)
+                            .size(Dimensions.dimen_24)
                     )
                 }
             }
@@ -153,8 +156,8 @@ private fun ReplyBar() {
         IconButton(
             onClick = {},
             modifier = Modifier
-                .padding(4.dp)
-                .size(24.dp)
+                .padding(Dimensions.dimen_4)
+                .size(Dimensions.dimen_24)
                 .scale(scaleX = -1f, scaleY = 1f)
         ) {
             Icon(
@@ -162,7 +165,7 @@ private fun ReplyBar() {
                 contentDescription = null,
                 modifier =
                 Modifier
-                    .size(24.dp)
+                    .size(Dimensions.dimen_24)
             )
         }
         Icon(
@@ -170,21 +173,21 @@ private fun ReplyBar() {
             contentDescription = "Dropdown",
             tint = MaterialTheme.colorScheme.onSurface
         )
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(Dimensions.dimen_8))
         Text(stringResource(R.string.txt_reply), color = MaterialTheme.colorScheme.onSurface)
         Spacer(modifier = Modifier.weight(1f))
         IconButton(
             onClick = {},
             modifier = Modifier
-                .padding(4.dp)
-                .size(24.dp)
+                .padding(Dimensions.dimen_4)
+                .size(Dimensions.dimen_24)
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Outlined.Shortcut,
                 contentDescription = null,
                 modifier =
                 Modifier
-                    .size(24.dp)
+                    .size(Dimensions.dimen_24)
             )
         }
     }

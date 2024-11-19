@@ -37,9 +37,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -52,6 +52,7 @@ import com.coroutinelab.coreui.component.DrawerMenuItem
 import com.coroutinelab.coreui.component.DrawerTitleItem
 import com.coroutinelab.coreui.component.HomeAppBar
 import com.coroutinelab.coreui.content.getDrawerItemsList
+import com.coroutinelab.coreui.theme.Dimensions
 import com.coroutinelab.coreui.theme.GmailMockTheme
 import com.coroutinelab.coreui.uimodel.DrawerData
 import com.coroutinelab.gmailmock.navigation.EmailDetails
@@ -87,8 +88,13 @@ class MainActivity : ComponentActivity() {
                             Scaffold(
                                 floatingActionButton = {
                                     ExtendedFloatingActionButton(
-                                        text = { Text("Compose") },
-                                        icon = { Icon(Icons.Filled.Edit, contentDescription = "") },
+                                        text = { Text(stringResource(R.string.txt_compose)) },
+                                        icon = {
+                                            Icon(
+                                                Icons.Filled.Edit,
+                                                contentDescription = stringResource(R.string.accessibility_compose)
+                                            )
+                                        },
                                         onClick = {
                                             scope.launch {
                                                 drawerState.apply {
@@ -102,9 +108,9 @@ class MainActivity : ComponentActivity() {
                                     when (topAppbarState) {
                                         TopAppbarState.HOME -> HomeAppBar(
                                             modifier = Modifier.padding(
-                                                start = 16.dp,
-                                                end = 16.dp,
-                                                top = 16.dp
+                                                start = Dimensions.dimen_16,
+                                                end = Dimensions.dimen_16,
+                                                top = Dimensions.dimen_16
                                             )
                                         ) {
                                             scope.launch {
@@ -114,9 +120,9 @@ class MainActivity : ComponentActivity() {
 
                                         TopAppbarState.DETAILS -> DetailsAppBar(
                                             modifier = Modifier.padding(
-                                                start = 16.dp,
-                                                end = 16.dp,
-                                                top = 16.dp
+                                                start = Dimensions.dimen_16,
+                                                end = Dimensions.dimen_16,
+                                                top = Dimensions.dimen_16
                                             ),
                                             navController = navController
                                         )
@@ -137,7 +143,7 @@ class MainActivity : ComponentActivity() {
                                             }) {
                                                 Icon(
                                                     imageVector = Icons.Filled.Email,
-                                                    contentDescription = "Email"
+                                                    contentDescription = stringResource(R.string.accessibility_email)
                                                 )
                                             }
                                             IconButton(onClick = {
