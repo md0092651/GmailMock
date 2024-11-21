@@ -30,7 +30,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,6 +40,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -183,8 +183,8 @@ class MainActivity : ComponentActivity() {
                                     ) {
                                         topAppbarState = TopAppbarState.HOME
                                         val viewModel: EmailListViewModel = hiltViewModel()
-                                        val state by viewModel.state.collectAsState()
-                                        val effect by viewModel.effect.collectAsState(initial = null)
+                                        val state by viewModel.state.collectAsStateWithLifecycle()
+                                        val effect by viewModel.effect.collectAsStateWithLifecycle(initialValue = null)
                                         val dispatch: (EmailListContract.EmailListEvent) -> Unit = { event ->
                                             viewModel.event(event)
                                         }
@@ -222,7 +222,7 @@ class MainActivity : ComponentActivity() {
                                         topAppbarState = TopAppbarState.DETAILS
                                         val args = it.toRoute<EmailDetails>()
                                         val viewModel: EmailDetailsViewModel = hiltViewModel()
-                                        val state by viewModel.state.collectAsState()
+                                        val state by viewModel.state.collectAsStateWithLifecycle()
 
                                         EmailDetailsScreen(
                                             state = state,
