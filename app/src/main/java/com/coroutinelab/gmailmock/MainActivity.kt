@@ -30,6 +30,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -171,51 +172,58 @@ class MainActivity : ComponentActivity() {
                                         exitTransition = {
                                             return@composable slideOutOfContainer(
                                                 AnimatedContentTransitionScope.SlideDirection.Start,
-                                                tween(700)
+                                                tween(ANIMATION_DURATION)
                                             )
                                         },
                                         popEnterTransition = {
                                             return@composable slideIntoContainer(
                                                 AnimatedContentTransitionScope.SlideDirection.End,
-                                                tween(700)
+                                                tween(ANIMATION_DURATION)
                                             )
                                         }
                                     ) {
                                         topAppbarState = TopAppbarState.HOME
                                         val viewModel: EmailListViewModel = hiltViewModel()
                                         val state by viewModel.state.collectAsStateWithLifecycle()
-                                        val effect by viewModel.effect.collectAsStateWithLifecycle(initialValue = null)
                                         val dispatch: (EmailListContract.EmailListEvent) -> Unit = { event ->
                                             viewModel.event(event)
                                         }
+
+                                        LaunchedEffect(key1 = Unit) {
+                                            viewModel.effect.collect { it ->
+                                                when (it) {
+                                                    is EmailListContract.EmailListEffect.NavigateToEmailDetails -> with(it){
+                                                        navController.navigate(
+                                                            EmailDetails(
+                                                                from = model.from,
+                                                                profileImage = model.profileImage,
+                                                                subject = model.subject,
+                                                                isPromotional = model.isPromotional,
+                                                                isStarred = model.isStarred
+                                                            )
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        }
+
                                         EmailListScreen(
                                             state = state,
-                                            effect = effect,
                                             dispatch = dispatch
-                                        ) { model ->
-                                            navController.navigate(
-                                                EmailDetails(
-                                                    from = model.from,
-                                                    profileImage = model.profileImage,
-                                                    subject = model.subject,
-                                                    isPromotional = model.isPromotional,
-                                                    isStarred = model.isStarred
-                                                )
-                                            )
-                                        }
+                                        )
                                     }
 
                                     composable<EmailDetails>(
                                         enterTransition = {
                                             return@composable slideIntoContainer(
                                                 AnimatedContentTransitionScope.SlideDirection.Start,
-                                                tween(700)
+                                                tween(ANIMATION_DURATION)
                                             )
                                         },
                                         popExitTransition = {
                                             return@composable slideOutOfContainer(
                                                 AnimatedContentTransitionScope.SlideDirection.End,
-                                                tween(700)
+                                                tween(ANIMATION_DURATION)
                                             )
                                         }
                                     ) {
@@ -239,6 +247,10 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private companion object {
+        const val ANIMATION_DURATION = 700
     }
 }
 

@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -15,24 +14,10 @@ import com.coroutinelab.coreui.component.FullScreenError
 import com.coroutinelab.coreui.component.LinearFullScreenProgress
 import com.coroutinelab.coreui.functional.toFormattedDate
 import com.coroutinelab.coreui.theme.Dimensions
-import com.coroutinelab.domain.model.emaillist.EmailListItemModel
 import com.coroutinelab.presentation.emaillist.mvi.EmailListContract
 
 @Composable
-fun EmailListScreen(
-    state: EmailListContract.EmailListState,
-    effect: EmailListContract.EmailListEffect?,
-    dispatch: (EmailListContract.EmailListEvent) -> Unit,
-    onItemClick: (EmailListItemModel) -> Unit
-) {
-    LaunchedEffect(key1 = effect) {
-        effect?.let {
-            when (it) {
-                is EmailListContract.EmailListEffect.NavigateToEmailDetails -> onItemClick(it.model)
-            }
-        }
-    }
-
+fun EmailListScreen(state: EmailListContract.EmailListState, dispatch: (EmailListContract.EmailListEvent) -> Unit) {
     when (state) {
         is EmailListContract.EmailListState.Error -> FullScreenError(
             errorMessage = state.error.getErrorMessage()
