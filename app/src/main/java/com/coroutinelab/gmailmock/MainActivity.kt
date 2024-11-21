@@ -192,7 +192,9 @@ class MainActivity : ComponentActivity() {
                                         LaunchedEffect(key1 = Unit) {
                                             viewModel.effect.collect { it ->
                                                 when (it) {
-                                                    is EmailListContract.EmailListEffect.NavigateToEmailDetails -> with(it){
+                                                    is EmailListContract.EmailListEffect.NavigateToEmailDetails -> with(
+                                                        it
+                                                    ) {
                                                         navController.navigate(
                                                             EmailDetails(
                                                                 from = model.from,
