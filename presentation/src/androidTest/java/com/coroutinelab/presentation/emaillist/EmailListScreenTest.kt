@@ -95,5 +95,4 @@ class EmailListScreenTest {
 
         composeTestRule.onNodeWithContentDescription("Loading").assertExists()
     }
-
 }

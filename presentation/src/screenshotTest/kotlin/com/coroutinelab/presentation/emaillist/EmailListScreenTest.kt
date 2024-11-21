@@ -13,9 +13,7 @@ class EmailListScreenTest {
     fun EmailListLoadingScreenPreview() {
         EmailListScreen(
             state = EmailListContract.EmailListState.Loading,
-            effect = null,
-            dispatch = {},
-            onItemClick = {}
+            dispatch = {}
         )
     }
 
@@ -26,9 +24,7 @@ class EmailListScreenTest {
             state = EmailListContract.EmailListState.Error(
                 Failure.ServerError(500, "Error")
             ),
-            effect = null,
-            dispatch = {},
-            onItemClick = {}
+            dispatch = {}
         )
     }
 
@@ -51,9 +47,7 @@ class EmailListScreenTest {
                     )
                 )
             ),
-            effect = null,
-            dispatch = {},
-            onItemClick = {}
+            dispatch = {}
         )
     }
 }
